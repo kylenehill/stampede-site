@@ -184,7 +184,7 @@
   .flyer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1.5rem; }
   .flyer-card { cursor: pointer; border: 2px solid var(--border-red); transition: border-color 0.2s, transform 0.2s; overflow: hidden; }
   .flyer-card:hover { border-color: var(--red); transform: translateY(-3px); }
-  .flyer-card img { width: 100%; display: block; }
+  .flyer-card img { width: 100%; display: block; aspect-ratio: 2/3; object-fit: cover; }
   .flyer-card-label { background: var(--black-soft); padding: 0.75rem 1rem; font-family: 'Oswald', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white-muted); }
 
   /* ── LIGHTBOX ── */
