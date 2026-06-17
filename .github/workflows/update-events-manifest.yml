@@ -1,0 +1,35 @@
+name: Update Events Manifest
+
+on:
+  push:
+    paths:
+      - 'images/events/**'
+
+jobs:
+  manifest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate manifest.json
+        run: |
+          files=$(ls images/events/*.webp 2>/dev/null | xargs -I{} basename {} | sort)
+          echo "[" > images/events/manifest.json
+          first=true
+          for f in $files; do
+            [ "$first" = true ] || echo "," >> images/events/manifest.json
+            printf '  "%s"' "$f" >> images/events/manifest.json
+            first=false
+          done
+          echo "" >> images/events/manifest.json
+          echo "]" >> images/events/manifest.json
+
+      - name: Commit manifest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add images/events/manifest.json
+          git diff --staged --quiet || git commit -m "chore: update events manifest"
+          git push
