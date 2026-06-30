@@ -38,7 +38,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rye&family=Oswald:wght@400;500;600;700&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-<style>
   :root {
     --black: #000000;
     --black-soft: #0d0000;
@@ -268,7 +267,6 @@
     .flyer-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
-</style>
 </head>
 <body>
 <nav>
@@ -295,6 +293,7 @@
 </div>
 
 <div class="page active">
+
   <section class="section" style="background:var(--black);">
     <div class="container" style="max-width:900px;">
       <h2 class="section-title" style="text-align:center;font-size:clamp(2rem,6vw,4rem);">Frequently Asked Questions</h2>
@@ -356,5 +355,10 @@ function closeMobile(){document.getElementById("mobileMenu").classList.remove("o
 function toggleFaq(btn){const a=btn.nextElementSibling;const open=a.classList.contains("open");btn.closest(".faq-group").querySelectorAll(".faq-a").forEach(x=>x.classList.remove("open"));btn.closest(".faq-group").querySelectorAll(".faq-q").forEach(x=>x.classList.remove("open"));if(!open){a.classList.add("open");btn.classList.add("open");}}
 </script>
 </div>
+<script>
+function toggleMobile(){document.getElementById("mobileMenu").classList.toggle("open");document.getElementById("hamburger").classList.toggle("open");}
+function closeMobile(){document.getElementById("mobileMenu").classList.remove("open");document.getElementById("hamburger").classList.remove("open");}
+function toggleFaq(btn){const a=btn.nextElementSibling;const open=a.classList.contains("open");btn.closest(".faq-group").querySelectorAll(".faq-a").forEach(x=>x.classList.remove("open"));btn.closest(".faq-group").querySelectorAll(".faq-q").forEach(x=>x.classList.remove("open"));if(!open){a.classList.add("open");btn.classList.add("open");}}
+</script>
 </body>
 </html>

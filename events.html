@@ -38,7 +38,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rye&family=Oswald:wght@400;500;600;700&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-<style>
   :root {
     --black: #000000;
     --black-soft: #0d0000;
@@ -268,7 +267,6 @@
     .flyer-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
-</style>
 </head>
 <body>
 <nav>
@@ -298,8 +296,14 @@
   <span class="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
   <img id="lightboxImg" src="" alt="">
 </div>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
+  <img id="lightboxImg" src="" alt="">
+</div>
 
 <div class="page active">
+
   <section class="section" style="background:var(--black);">
     <div class="container">
       <p class="section-eyebrow" style="text-align:center;">What's Happening</p>
@@ -380,5 +384,27 @@ fetch('images/events/manifest.json')
   });
 </script>
 </div>
+<script>
+function toggleMobile(){document.getElementById("mobileMenu").classList.toggle("open");document.getElementById("hamburger").classList.toggle("open");}
+function closeMobile(){document.getElementById("mobileMenu").classList.remove("open");document.getElementById("hamburger").classList.remove("open");}
+function openLightbox(src){document.getElementById("lightboxImg").src=src;document.getElementById("lightbox").classList.add("open");document.body.style.overflow="hidden";}
+function closeLightbox(){document.getElementById("lightbox").classList.remove("open");document.body.style.overflow="";}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeLightbox();});
+fetch('images/events/manifest.json')
+  .then(r => r.json())
+  .then(files => {
+    const grid = document.getElementById('flyer-grid');
+    files.forEach(file => {
+      const src = `images/events/${file}`;
+      const label = file.replace(/\.webp$/, '').replace(/-/g, ' ')
+        .replace(/\b\w/g, c => c.toUpperCase());
+      const card = document.createElement('div');
+      card.className = 'flyer-card';
+      card.onclick = () => openLightbox(src);
+      card.innerHTML = `<img src="${src}" alt="${label}"><div class="flyer-card-label">${label}</div>`;
+      grid.appendChild(card);
+    });
+  });
+</script>
 </body>
 </html>
