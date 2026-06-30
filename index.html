@@ -300,6 +300,7 @@
   <img id="lightboxImg" src="" alt="">
 </div>
 
+<div class="page active">
   <section class="hero">
     <div class="hero-logo"><img src="images/logo.webp" alt="Stampede Livermore"></div>
     <h1>Welcome to Livermore's<br>Newest Country Bar</h1>
@@ -482,5 +483,6 @@ function submitForm(e,formId,successId,sfx){
     .catch(()=>{window.location.href="mailto:info@stampedelivermore.com?subject=Website%20Inquiry&body=Name%3A%20"+encodeURIComponent(data.name)+"%0AEmail%3A%20"+encodeURIComponent(data.email)+"%0APhone%3A%20"+encodeURIComponent(data.phone)+"%0A%0A"+encodeURIComponent(data.message);btn.textContent="Send Message";btn.disabled=false;});
 }
 </script>
+</div>
 </body>
 </html>

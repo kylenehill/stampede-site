@@ -293,6 +293,8 @@
   <a href="/#home-contact">Contact</a>
   <a href="faq.html">FAQ's</a>
 </div>
+
+<div class="page active">
   <section class="section" style="background:var(--black);">
     <div class="container" style="max-width:900px;">
       <h2 class="section-title" style="text-align:center;font-size:clamp(2rem,6vw,4rem);">Frequently Asked Questions</h2>
@@ -353,5 +355,6 @@ function toggleMobile(){document.getElementById("mobileMenu").classList.toggle("
 function closeMobile(){document.getElementById("mobileMenu").classList.remove("open");document.getElementById("hamburger").classList.remove("open");}
 function toggleFaq(btn){const a=btn.nextElementSibling;const open=a.classList.contains("open");btn.closest(".faq-group").querySelectorAll(".faq-a").forEach(x=>x.classList.remove("open"));btn.closest(".faq-group").querySelectorAll(".faq-q").forEach(x=>x.classList.remove("open"));if(!open){a.classList.add("open");btn.classList.add("open");}}
 </script>
+</div>
 </body>
 </html>
