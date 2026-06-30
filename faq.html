@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQs — Hours, Cover, Mechanical Bull | Stampede Livermore</title>
+<meta name="description" content="Answers to common questions about Stampede in Livermore, CA — hours, age restrictions, reservations, mechanical bull, private parties, and more.">
+<link rel="canonical" href="https://stampedelivermore.com/faq.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BarOrPub",
+  "name": "Stampede",
+  "description": "Livermore's newest country bar featuring live music, mechanical bull riding, and great food and drinks.",
+  "url": "https://stampedelivermore.com",
+  "telephone": "+19252008783",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1790 First Street",
+    "addressLocality": "Livermore",
+    "addressRegion": "CA",
+    "postalCode": "94550",
+    "addressCountry": "US"
+  },
+  "openingHoursSpecification": [
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Wednesday","opens":"11:30","closes":"21:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Thursday","opens":"11:30","closes":"00:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"11:30","closes":"02:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"11:30","closes":"02:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"11:30","closes":"20:00"}
+  ],
+  "servesCuisine": "American",
+  "priceRange": "$$",
+  "geo": {"@type":"GeoCoordinates","latitude":37.68193,"longitude":-121.77804}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Oswald:wght@400;500;600;700&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+<style>
+  :root {
+    --black: #000000;
+    --black-soft: #0d0000;
+    --black-mid: #111111;
+    --red: #CC0000;
+    --red-bright: #E00000;
+    --red-dark: #7a0000;
+    --white: #FFFFFF;
+    --white-dim: rgba(255,255,255,0.88);
+    --white-muted: rgba(255,255,255,0.55);
+    --white-faint: rgba(255,255,255,0.12);
+    --border-red: rgba(204,0,0,0.45);
+    --border-white: rgba(255,255,255,0.13);
+    --nav-h: 80px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Barlow', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+
+  /* Western display font */
+  .western { font-family: 'Rye', serif; }
+  .western-title {
+    font-family: 'Rye', serif;
+    color: var(--red);
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.8);
+    line-height: 1.15;
+  }
+  .oswald { font-family: 'Oswald', sans-serif; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    height: var(--nav-h);
+    background: var(--black);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem;
+    border-bottom: 2px solid var(--red);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.75rem; cursor: pointer; text-decoration: none;
+  }
+  .nav-logo img { height: 64px; width: auto; }
+  .nav-links { display: flex; gap: 0; list-style: none; }
+  .nav-links li a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--white); text-decoration: none;
+    padding: 0.5rem 0.85rem; cursor: pointer;
+    transition: color 0.15s; white-space: nowrap;
+    border-bottom: 3px solid transparent;
+  }
+  .nav-links li a:hover { color: var(--red); }
+  .nav-links li a.active { color: var(--red); border-bottom-color: var(--red); }
+
+  /* Hamburger */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger span { display: block; width: 26px; height: 2px; background: var(--white); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: var(--black); z-index: 999; border-bottom: 2px solid var(--red); flex-direction: column; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-family: 'Oswald', sans-serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); text-decoration: none; padding: 0.9rem 2rem; border-bottom: 1px solid var(--border-white); cursor: pointer; }
+  .mobile-menu a:hover { color: var(--red); }
+
+  /* ── PAGE SYSTEM ── */
+  .page { display: none; padding-top: var(--nav-h); min-height: 100vh; }
+  .page.active { display: block; }
+
+  /* ── BUTTONS ── */
+  .btn { display: inline-block; font-family: 'Oswald', sans-serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.7rem 2rem; cursor: pointer; text-decoration: none; transition: all 0.18s; border: 2px solid; }
+  .btn-red { background: var(--red); color: var(--white); border-color: var(--red); }
+  .btn-red:hover { background: var(--red-bright); border-color: var(--red-bright); }
+  .btn-outline { background: transparent; color: var(--white); border-color: var(--white); }
+  .btn-outline:hover { background: var(--white); color: var(--black); }
+  .btn-outline-red { background: transparent; color: var(--red); border-color: var(--red); }
+  .btn-outline-red:hover { background: var(--red); color: var(--white); }
+  .btn-black { background: var(--black); color: var(--white); border-color: var(--white); font-style: italic; }
+  .btn-black:hover { background: var(--white); color: var(--black); }
+
+  /* ── HERO ── */
+  .hero { background: var(--black); min-height: calc(100vh - var(--nav-h)); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 4rem 2rem; }
+  .hero h1 { font-family: 'Rye', serif; font-size: clamp(1.8rem, 5vw, 3.5rem); color: var(--red); text-shadow: 3px 3px 0px rgba(0,0,0,0.9); line-height: 1.25; margin-bottom: 2.5rem; }
+  .hero-logo img { height: 320px; width: auto; margin-bottom: 2rem; }
+
+  /* ── PROMO STRIP ── */
+  .promo-strip { background: var(--red-dark); padding: 0.85rem 0; overflow: hidden; border-top: 1px solid var(--red); border-bottom: 1px solid var(--red); }
+  .promo-track { display: flex; gap: 3rem; animation: scrollPromo 28s linear infinite; white-space: nowrap; }
+  @keyframes scrollPromo { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  .promo-item { font-family: 'Oswald', sans-serif; font-size: 0.95rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); display: inline-flex; align-items: center; gap: 1rem; }
+  .promo-item::after { content: "★"; color: rgba(255,255,255,0.4); font-size: 0.6rem; }
+
+  /* ── TWO-UP ── */
+  .two-up { display: grid; grid-template-columns: 1fr 1fr; }
+  .two-up-item { position: relative; min-height: 440px; display: flex; }
+  .two-up-photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
+  .two-up-red { position: relative; z-index: 2; width: 50%; background: var(--red); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 3rem 2.5rem; }
+  .food-item .two-up-red { order: -1; }
+  .food-item .two-up-photo { left: 50%; right: 0; width: 50%; }
+  .party-item .two-up-red { margin-left: auto; }
+  .party-item .two-up-photo { left: 0; right: 50%; width: 50%; }
+  .two-up-red h3 { font-family: 'Rye', serif; font-size: clamp(1.3rem, 2.5vw, 2rem); color: var(--white); text-shadow: 2px 2px 0 rgba(0,0,0,0.5); margin-bottom: 1.5rem; line-height: 1.3; }
+
+  /* ── SECTION UTILS ── */
+  .section { padding: 4.5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-eyebrow { font-family: 'Oswald', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase; color: var(--white-muted); margin-bottom: 0.5rem; }
+  h2.section-title { font-family: 'Rye', serif; font-size: clamp(1.8rem, 4vw, 3rem); color: var(--red); text-shadow: 2px 2px 0px rgba(0,0,0,0.8); line-height: 1.2; margin-bottom: 1.5rem; }
+  .red-dotted { width: 100%; height: 0; border-top: 2px dotted var(--red); margin: 0.5rem 0 1.25rem; }
+
+  /* ── HOURS TABLE ── */
+  .hours-table { width: 100%; border-collapse: collapse; }
+  .hours-table tr { border-bottom: 1px solid var(--border-white); }
+  .hours-table tr:last-child { border-bottom: none; }
+  .hours-table td { padding: 0.5rem 0; font-size: 0.9rem; }
+  .hours-table td:first-child { font-family: 'Oswald', sans-serif; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--white-muted); width: 44%; }
+  .hours-table td:last-child { color: var(--red-bright); }
+
+  /* ── CONTACT FORM ── */
+  .contact-form { display: flex; flex-direction: column; gap: 0; }
+  .cf-row { display: flex; gap: 0; flex-wrap: wrap; }
+  .cf-field { display: flex; flex-direction: column; flex: 1; min-width: 180px; }
+  .cf-field label { font-family: 'Oswald', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); padding: 0.6rem 0 0.3rem; }
+  .cf-field input, .cf-field textarea { background: var(--red-dark); border: none; border-bottom: 2px solid var(--red); color: var(--white); font-family: 'Barlow', sans-serif; font-size: 0.95rem; padding: 0.6rem 0.5rem; outline: none; transition: background 0.2s; width: 100%; }
+  .cf-field input:focus, .cf-field textarea:focus { background: #2a0000; }
+  .cf-field textarea { min-height: 100px; resize: vertical; }
+  .cf-field input::placeholder, .cf-field textarea::placeholder { color: rgba(255,255,255,0.3); }
+  .form-success { background: rgba(0,150,0,0.2); border: 1px solid #4caf50; padding: 1rem; color: #90ee90; font-size: 0.9rem; margin-bottom: 1rem; display: none; }
+  .cf-submit-row { padding-top: 1rem; display: flex; justify-content: flex-end; }
+
+  /* ── CALL BUTTON ── */
+  .call-btn { display: inline-flex; align-items: center; justify-content: center; font-family: 'Oswald', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.75rem 2.25rem; background: var(--black); color: var(--white); border: 2px solid var(--white); border-radius: 50px; text-decoration: none; cursor: pointer; transition: background 0.2s, color 0.2s; }
+  .call-btn:hover { background: var(--white); color: var(--black); }
+
+  /* ── MAP ── */
+  .map-wrap { border: 2px solid var(--red); overflow: hidden; }
+  .map-wrap iframe { display: block; width: 100%; border: none; }
+
+  /* ── FAQ ── */
+  .faq-group { margin-bottom: 2.5rem; }
+  .faq-group-title { font-family: 'Oswald', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--white-muted); margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-red); }
+  .faq-item { border-bottom: 1px solid var(--border-white); }
+  .faq-q { font-family: 'Oswald', sans-serif; font-size: 1.05rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; padding: 1rem 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--white); gap: 1rem; background: none; border: none; width: 100%; text-align: left; transition: color 0.15s; }
+  .faq-q:hover { color: var(--red); }
+  .faq-q .faq-icon { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--white-muted); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; color: var(--white-muted); transition: transform 0.3s, border-color 0.2s, color 0.2s; }
+  .faq-q.open { color: var(--red); }
+  .faq-q.open .faq-icon { transform: rotate(45deg); border-color: var(--red); color: var(--red); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; font-size: 0.95rem; color: var(--white-muted); line-height: 1.75; }
+  .faq-a.open { max-height: 500px; padding-bottom: 1.25rem; }
+  .faq-a a { color: var(--red); }
+
+  /* ── TRI-BOX ── */
+  .tri-box { display: grid; grid-template-columns: repeat(3,1fr); border-top: 3px solid var(--red); background: var(--black); }
+  .tri-box-item { padding: 2.5rem 2rem; border-right: 1px solid var(--border-white); display: flex; flex-direction: column; gap: 0.85rem; }
+  .tri-box-item:last-child { border-right: none; }
+  .tri-box-item .tb-label { font-family: 'Oswald', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--white-muted); }
+  .tri-box-item h3 { font-family: 'Rye', serif; font-size: 1.3rem; color: var(--red); text-shadow: 1px 1px 0 rgba(0,0,0,0.7); line-height: 1.25; }
+  .tri-box-item p { color: var(--white-muted); font-size: 0.88rem; line-height: 1.65; flex: 1; }
+
+  /* ── STORY BOX ── */
+  .story-box { border: 1px solid var(--border-red); padding: 3.5rem 4rem; background: var(--black-soft); text-align: center; max-width: 900px; margin: 0 auto; }
+  .story-box h2 { font-family: 'Rye', serif; font-size: clamp(1.6rem, 3.5vw, 2.5rem); color: var(--red); text-shadow: 2px 2px 0 rgba(0,0,0,0.8); margin-bottom: 1.5rem; }
+  .story-box p { color: var(--white-dim); font-size: 1rem; line-height: 1.85; margin-bottom: 1.1rem; font-weight: 300; }
+  .story-highlight { color: var(--red) !important; font-style: italic !important; font-weight: 500 !important; }
+
+  /* ── MENU SECTION ── */
+  .menu-section-head { font-family: 'Rye', serif; font-size: 1.3rem; color: var(--red); text-shadow: 1px 1px 0 rgba(0,0,0,0.8); margin-bottom: 0.4rem; }
+  .menu-item { padding: 0.55rem 0; border-bottom: 1px solid var(--border-white); }
+  .menu-item-name { font-family: 'Oswald', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--white); }
+  .menu-item-desc { font-size: 0.82rem; color: var(--red-bright); margin-top: 0.1rem; }
+
+  /* ── FLYER GRID ── */
+  .flyer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1.5rem; }
+  .flyer-card { cursor: pointer; border: 2px solid var(--border-red); transition: border-color 0.2s, transform 0.2s; overflow: hidden; }
+  .flyer-card:hover { border-color: var(--red); transform: translateY(-3px); }
+  .flyer-card img { width: 100%; display: block; aspect-ratio: 2/3; object-fit: cover; }
+  .flyer-card-label { background: var(--black-soft); padding: 0.75rem 1rem; font-family: 'Oswald', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white-muted); }
+
+  /* ── LIGHTBOX ── */
+  .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.93); z-index: 9999; align-items: center; justify-content: center; padding: 1rem; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border: 2px solid var(--red); }
+  .lightbox-close { position: fixed; top: 1rem; right: 1.5rem; font-size: 2.5rem; color: var(--white); cursor: pointer; z-index: 10000; line-height: 1; font-family: sans-serif; }
+  .lightbox-close:hover { color: var(--red); }
+
+  /* ── VIP CARDS ── 
+  .vip-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .vip-card { border: 2px solid var(--red); padding: 2.5rem; background: var(--black-soft); text-align: center; }
+  .vip-card h3 { font-family: 'Rye', serif; font-size: 1.7rem; color: var(--red); text-shadow: 1px 1px 0 rgba(0,0,0,0.7); margin-bottom: 1rem; }
+  .vip-card ul { list-style: none; margin: 1rem 0 1.5rem; text-align: left; }
+  .vip-card ul li { padding: 0.45rem 0; font-size: 0.9rem; color: var(--white-muted); border-bottom: 1px solid var(--border-white); font-family: 'Oswald', sans-serif; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
+  .vip-card ul li::before { content: "★ "; color: var(--red); font-size: 0.6rem; vertical-align: middle; }
+  */
+
+  /* ── FOOTER ── */
+  footer { background: var(--black); color: var(--white-muted); text-align: center; padding: 1.75rem 2rem; font-size: 0.85rem; border-top: 2px solid var(--red); font-family: 'Oswald', sans-serif; letter-spacing: 0.05em; }
+  footer a { color: var(--red); text-decoration: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width:900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .tri-box { grid-template-columns: 1fr; }
+    .tri-box-item { border-right: none; border-bottom: 1px solid var(--border-white); }
+    .two-up { grid-template-columns: 1fr; }
+    .two-up-item { flex-direction: column; min-height: auto; }
+    .two-up-red { width: 100%; padding: 2.5rem 2rem; margin-left: 0 !important; }
+    .two-up-photo { position: relative !important; width: 100% !important; height: 280px; left: auto !important; right: auto !important; inset: auto !important; }
+    .food-item { flex-direction: column-reverse; }
+    .party-item { flex-direction: column; }
+    /* .vip-cards { grid-template-columns: 1fr; } */
+    .story-box { padding: 2rem 1.25rem; }
+    .menu-2col { grid-template-columns: 1fr !important; }
+    .info-3col { grid-template-columns: 1fr !important; }
+    .faq-2col { grid-template-columns: 1fr !important; }
+  }
+  @media (max-width:600px) {
+    :root { --nav-h: 64px; }
+    .section { padding: 3rem 1.25rem; }
+    .hero { padding: 2.5rem 1.25rem; }
+    .hero-logo img { height: 150px; }
+    .hero h1 { font-size: 1.6rem; }
+    .tri-box-item { padding: 2rem 1.25rem; }
+    .cf-row { flex-direction: column; }
+    /* .vip-card { padding: 1.75rem 1.25rem; } */
+    .flyer-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="/">
+    <img src="images/logo.webp" alt="Stampede Country Bar Livermore">
+  </a>
+  <ul class="nav-links">
+    <li><a href="/" id="nav-home">Home</a></li>
+    <li><a href="our-story.html" id="nav-story">Our Story</a></li>
+    <li><a href="menu.html" id="nav-menu">Menu</a></li>
+    <li><a href="events.html" id="nav-events">Events</a></li>
+    <li><a href="/#home-contact" id="nav-contact">Contact</a></li>
+    <li><a href="faq.html" id="nav-faq" class="active">FAQ's</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/">Home</a>
+  <a href="our-story.html">Our Story</a>
+  <a href="menu.html">Menu</a>
+  <a href="events.html">Events</a>
+  <a href="/#home-contact">Contact</a>
+  <a href="faq.html">FAQ's</a>
+</div>
+  <section class="section" style="background:var(--black);">
+    <div class="container" style="max-width:900px;">
+      <h2 class="section-title" style="text-align:center;font-size:clamp(2rem,6vw,4rem);">Frequently Asked Questions</h2>
+
+      <div class="faq-group">
+        <p class="faq-group-title">General Contact &amp; Information</p>
+        <div class="faq-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-bottom:2rem;">
+          <div>
+            <table class="hours-table" style="margin-bottom:1.25rem;">
+              <tr><td>Mon – Tue</td><td>Closed</td></tr>
+              <tr><td>Wednesday</td><td>11:30 am – 9:00 pm</td></tr>
+              <tr><td>Thursday</td><td>11:30 am – 12:00 am</td></tr>
+              <tr><td>Fri – Sat</td><td>11:30 am – 2:00 am</td></tr>
+              <tr><td>Sunday</td><td>11:30 am – 8:00 pm</td></tr>
+            </table>
+            <div style="padding-top:0.75rem;border-top:1px solid var(--border-white);margin-bottom:1.25rem;">
+              <p style="color:var(--white);font-family:'Oswald',sans-serif;font-size:0.85rem;font-weight:600;font-style:italic;line-height:1.8;">Fridays/Saturdays:<br>Family-friendly until 8 PM &middot; 21+ after 8 PM<br><span style="color:var(--red);">$10 cover all nights with dancing</span><br><span style="color:var(--white-muted);font-weight:400;font-style:normal;">Cover may be waived for groups dining with us</span></p>
+            </div>
+            <a href="tel:+19252008783" class="call-btn" style="font-size:1rem;padding:0.65rem 1.75rem;">Call Us</a>
+          </div>
+          <div>
+            <div class="map-wrap" style="margin-bottom:0.75rem;">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d789.3!2d-121.77804!3d37.68193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fe8c1ca7d9bcd%3A0xf14c6de3cd2a5e2!2s1790%20First%20St%2C%20Livermore%2C%20CA%2094550!5e0!3m2!1sen!2sus!4v1234567890123" height="230" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <p style="color:var(--white-muted);font-size:0.82rem;text-align:center;font-family:'Oswald',sans-serif;">Stampede &middot; 1790 First Street, Livermore CA 94550<br><a href="tel:+19252008783" style="color:var(--red);">+1 (925) 200-8783</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-group"><p class="faq-group-title">Age Restrictions</p>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Who is welcome at Stampede?<span class="faq-icon">+</span></button><div class="faq-a">Everyone is invited every day we are open! On Fridays and Saturdays, guests must be 21 or older after 8 PM when our live bands play, as we are then considered a nightclub with 21+ age limits.</div></div>
+      </div>
+      <div class="faq-group"><p class="faq-group-title">Pets</p>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I bring my pet?<span class="faq-icon">+</span></button><div class="faq-a">We're big animal lovers around here, but due to health rules, we can't have pets at Stampede. We wish we could! Service animals, of course, are always welcome.</div></div>
+      </div>
+      <div class="faq-group"><p class="faq-group-title">Entertainment</p>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What kind of entertainment do you have?<span class="faq-icon">+</span></button><div class="faq-a">We have an event every day we're open, and live music every Friday and Saturday night! We mainly feature country bands, but per request we're mixing it up with some classic rock too. Watch our social media for the latest on who's playing each weekend!</div></div>
+      </div>
+      <div class="faq-group"><p class="faq-group-title">Hiring &amp; Booking</p>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I apply for a job or book Stampede for my band?<span class="faq-icon">+</span></button><div class="faq-a">Email your resume or booking inquiry to <a href="mailto:info@stampedelivermore.com">info@stampedelivermore.com</a> and we'll be in touch!</div></div>
+      </div>
+      <div class="faq-group"><p class="faq-group-title">Dietary Options</p>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do you have options for dietary restrictions?<span class="faq-icon">+</span></button><div class="faq-a">Absolutely! We have options for all dietary needs. Just ask your server for recommendations and we'll take care of you.</div></div>
+      </div>
+      <div class="faq-group"><p class="faq-group-title">Reservations</p>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I make a reservation?<span class="faq-icon">+</span></button><div class="faq-a">We highly encourage reservations &mdash; we get very busy on dance nights! Call us at <a href="tel:+19252008783">(925) 200-8783</a> and we can book a table up to 6:30 PM on Friday/Saturday. You can also email a few days in advance at <a href="mailto:stampede.livermore@gmail.com">stampede.livermore@gmail.com</a>.</div></div>
+      </div>
+      <div class="faq-group"><p class="faq-group-title">Parties &amp; Celebrations</p>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can Stampede host my private party or celebration?<span class="faq-icon">+</span></button><div class="faq-a">Yes! We are the ultimate party venue. With dancing until dawn, live music, and bull riding &mdash; it's a night no one forgets. Reach out at <a href="tel:+19252008783">(925) 200-8783</a> to learn more about booking The Boar's Nest private saloon!</div></div>
+      </div>
+
+    </div>
+  </section>
+  <footer><p>&copy; 2026 Stampede &middot; All Rights Reserved</p><p style="margin-top:0.4rem;font-size:0.8rem;opacity:0.6;">1790 First Street, Livermore, CA 94550 &middot; <a href="tel:+19252008783">(925) 200-8783</a></p></footer>
+
+<script>
+function toggleMobile(){document.getElementById("mobileMenu").classList.toggle("open");document.getElementById("hamburger").classList.toggle("open");}
+function closeMobile(){document.getElementById("mobileMenu").classList.remove("open");document.getElementById("hamburger").classList.remove("open");}
+function toggleFaq(btn){const a=btn.nextElementSibling;const open=a.classList.contains("open");btn.closest(".faq-group").querySelectorAll(".faq-a").forEach(x=>x.classList.remove("open"));btn.closest(".faq-group").querySelectorAll(".faq-q").forEach(x=>x.classList.remove("open"));if(!open){a.classList.add("open");btn.classList.add("open");}}
+</script>
+</body>
+</html>
