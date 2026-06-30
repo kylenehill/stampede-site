@@ -54,7 +54,7 @@
     --nav-h: 80px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
   body { font-family: 'Barlow', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
 
   /* Western display font */
@@ -278,7 +278,7 @@
     <li><a href="our-story.html" id="nav-story">Our Story</a></li>
     <li><a href="menu.html" id="nav-menu">Menu</a></li>
     <li><a href="events.html" id="nav-events">Events</a></li>
-    <li><a href="/#home-contact" id="nav-contact">Contact</a></li>
+    <li><a href="#home-contact" id="nav-contact">Contact</a></li>
     <li><a href="faq.html" id="nav-faq">FAQ's</a></li>
   </ul>
   <button class="hamburger" id="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></button>
@@ -288,7 +288,7 @@
   <a href="our-story.html">Our Story</a>
   <a href="menu.html">Menu</a>
   <a href="events.html">Events</a>
-  <a href="/#home-contact">Contact</a>
+  <a href="#home-contact">Contact</a>
   <a href="faq.html">FAQ's</a>
 </div>
 
