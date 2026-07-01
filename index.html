@@ -333,7 +333,7 @@
   <section style="background:var(--black);padding:3rem 0 0;">
     <div class="container" style="max-width:1100px;padding:0 2rem;">
       <!-- Slider container -->
-      <div id="slider" style="position:relative;overflow:hidden;border:2px solid var(--border-red);background:var(--black-mid);">
+      <div id="slider" style="position:relative;overflow:hidden;border:2px solid var(--border-red);background:var(--black-mid);min-height:700px;">
         <!-- Slides -->
                 <div id="sliderTrack" style="display:flex;transition:transform 0.5s ease;"></div>
 
@@ -474,6 +474,12 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeLightbox();});
       });
       goTo(0);
       setInterval(()=>goTo(cur+1),6000);
+      // Re-scroll to #home-contact after slider loads (prevents layout-shift landing)
+      if(window.location.hash==='#home-contact'){
+        const navH=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'))||80;
+        const el=document.getElementById('home-contact');
+        if(el) window.scrollTo({top:el.offsetTop-navH,behavior:'instant'});
+      }
     });
 })();
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx3OQ5S5l9oGLRJXe3RiGisuUkBEmKhgTutmbOMF-fDDO6HhI6EWNcvL0alcAFkvQdd9A/exec";
