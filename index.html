@@ -6,6 +6,7 @@
 <title>Stampede | Country Bar & Live Music in Livermore, CA</title>
 <meta name="description" content="Stampede is Livermore's newest country bar — live music Fri & Sat, mechanical bull riding, family-friendly until 8pm. 1790 First St, Livermore CA.">
 <link rel="canonical" href="https://stampedelivermore.com">
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -436,6 +437,7 @@
       <p class="modal-title">Subscribe to our Weekly Newsletter</p>
       <form class="newsletter-form" id="nf1" onsubmit="submitNewsletter(event)">
         <input type="email" id="newsletterEmail" placeholder="Your email address" required>
+        <div class="g-recaptcha" id="newsletterRecaptcha" data-sitekey="6Lcs5F4tAAAAAHnFEDoh1yGsLEpoVpyt3OwQr4rj" style="align-self:center;"></div>
         <button type="submit" class="btn btn-red">Subscribe</button>
       </form>
     </div>
@@ -522,6 +524,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeLightbox();});
     });
 })();
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx3OQ5S5l9oGLRJXe3RiGisuUkBEmKhgTutmbOMF-fDDO6HhI6EWNcvL0alcAFkvQdd9A/exec";
+const NEWSLETTER_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwq2yWwLHlGPcwKhPX4GZPDbdDtU20CwD-8k_vL0PsUCoaoXlV6KbhUTN4KDd8QEsiz/exec";
 function submitForm(e,formId,successId,sfx){
   e.preventDefault();
   const btn=document.querySelector("#"+formId+" button[type=submit]");
@@ -536,12 +539,15 @@ function closeNewsletter(){document.getElementById("newsletterModal").classList.
 function closeNewsletterConfirm(){document.getElementById("newsletterConfirmModal").classList.remove("open");document.body.style.overflow="";}
 function submitNewsletter(e){
   e.preventDefault();
+  const token=grecaptcha.getResponse();
+  if(!token){alert("Please check the box to confirm you're not a robot.");return;}
   const btn=document.querySelector("#nf1 button[type=submit]");
   const email=document.getElementById("newsletterEmail").value;
   btn.textContent="Subscribing...";btn.disabled=true;
-  fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",body:JSON.stringify({email:email,source:"newsletter"})})
+  fetch(NEWSLETTER_SCRIPT_URL,{method:"POST",mode:"no-cors",body:JSON.stringify({email:email,recaptchaToken:token})})
     .then(()=>{
       document.getElementById("nf1").reset();
+      grecaptcha.reset();
       btn.textContent="Subscribe";btn.disabled=false;
       closeNewsletter();
       document.getElementById("newsletterConfirmModal").classList.add("open");
