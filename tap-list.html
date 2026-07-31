@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stampede Drink Menu</title>
+  <link rel="icon" type="image/png" href="https://kylenehill.github.io/stampede-menu/logo.png" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0d0d0d;
+      color: #f0f0f0;
+      font-family: 'Inter', sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding-bottom: 40px;
+    }
+
+    /* ── HEADER ── */
+    #header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      background: #1a1a1a;
+      border-bottom: 3px solid #c8a84b;
+    }
+
+    #header img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 3px;
+      color: #c8a84b;
+      padding: 20px 16px 8px;
+      border-bottom: 1px solid #2a2a2a;
+      margin-bottom: 8px;
+    }
+
+    /* ── CARD ── */
+    .card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 16px;
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    .card-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #2a2a2a;
+      flex-shrink: 0;
+      border: 1px solid #333;
+    }
+
+    .card-logo-placeholder {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #2a2a2a;
+      flex-shrink: 0;
+      border: 1px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .card-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .card-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #f0f0f0;
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 12px;
+      color: #888;
+      margin-top: 2px;
+    }
+
+    .card-abv {
+      font-size: 16px;
+      font-weight: 700;
+      color: #c8a84b;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    .card-abv span {
+      display: block;
+      font-size: 10px;
+      font-weight: 400;
+      color: #555;
+    }
+
+    /* ── LOADING / STATUS ── */
+    #loading {
+      text-align: center;
+      padding: 60px 20px;
+      color: #555;
+      font-size: 14px;
+    }
+
+    /* ── SECTION NAV ── */
+    #section-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 14px 16px;
+      background: #111;
+      border-bottom: 1px solid #222;
+      position: sticky;
+      top: 75px;
+      z-index: 99;
+    }
+
+    .nav-chip {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: #222;
+      color: #aaa;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-chip:active {
+      background: #c8a84b;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header">
+    <img src="https://kylenehill.github.io/stampede-menu/logo.png" alt="Stampede" />
+  </div>
+
+  <div id="section-nav"></div>
+  <div id="menu"><div id="loading">Loading menu…</div></div>
+
+  <script>
+    const CSV_URL     = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR_T5heWUtL7xTWt5gJ2jT7DhJPjTmbTn-aYYw2_YdfbcQAgB_OlkI0Vyn0GtsYSzqdALQXmxg4Wdrx/pub?gid=0&single=true&output=csv';
+    const SECTION_MAP = {};
+
+    function driveUrl(raw) {
+      if (!raw) return null;
+      const m = raw.match(/\/d\/([a-zA-Z0-9_-]+)/);
+      if (!m) return null;
+      return `https://drive.google.com/thumbnail?id=${m[1]}&sz=w200`;
+    }
+
+    function parseCsv(text) {
+      const lines = text.trim().split('\n');
+      const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
+      return lines.slice(1).map(line => {
+        const cols = [];
+        let cur = '', inQ = false;
+        for (let i = 0; i < line.length; i++) {
+          const c = line[i];
+          if (c === '"') { inQ = !inQ; }
+          else if (c === ',' && !inQ) { cols.push(cur); cur = ''; }
+          else { cur += c; }
+        }
+        cols.push(cur);
+        const obj = {};
+        headers.forEach((h, i) => obj[h] = (cols[i] || '').trim().replace(/^"|"$/g, ''));
+        return obj;
+      }).filter(r => r.Title);
+    }
+
+    function guessEmoji(desc, section) {
+      const d = (desc + section).toLowerCase();
+      if (d.includes('stout') || d.includes('porter')) return '🍺';
+      if (d.includes('ipa') || d.includes('hazy')) return '🍻';
+      if (d.includes('lager') || d.includes('pilsner')) return '🍺';
+      if (d.includes('cider')) return '🍎';
+      if (d.includes('seltzer') || d.includes('hard selt')) return '💧';
+      if (d.includes('premixed') || d.includes('cocktail')) return '🥃';
+      if (d.includes('chardonnay') || d.includes('riesling') || d.includes('white')) return '🥂';
+      if (d.includes('rose') || d.includes('blush')) return '🌸';
+      if (d.includes('wine') || d.includes('cabernet') || d.includes('merlot') || d.includes('zinfandel') || d.includes('pinot')) return '🍷';
+      if (d.includes('non-alcoholic') || d.includes('0.0')) return '🧃';
+      return '🍺';
+    }
+
+    function slugify(str) {
+      return str.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    }
+
+    async function load() {
+      let text;
+      try {
+        const res = await fetch(CSV_URL + '&v=' + Date.now());
+        text = await res.text();
+      } catch (e) {
+        document.getElementById('loading').innerHTML =
+          `<p style="color:#c8a84b">⚠️ Could not load menu.</p>
+           <p style="margin-top:8px;font-size:12px;color:#555">Open this page from the web, not a local file.<br>${e.message}</p>`;
+        return;
+      }
+      const rows = parseCsv(text);
+
+      // Group by section
+      const map = {}, order = [];
+      rows.forEach(r => {
+        const raw = r.Section || 'Other';
+        const s = SECTION_MAP[raw] || raw;
+        if (!map[s]) { map[s] = []; order.push(s); }
+        map[s].push(r);
+      });
+
+      // Sort items within each section alphabetically
+      order.forEach(s => map[s].sort((a, b) => a.Title.localeCompare(b.Title)));
+
+      // Build section nav
+      const nav = document.getElementById('section-nav');
+      nav.innerHTML = order.map(s =>
+        `<a class="nav-chip" href="#${slugify(s)}">${s}</a>`
+      ).join('');
+
+      // Build menu
+      const menu = document.getElementById('menu');
+      menu.innerHTML = order.map(s => `
+        <div id="${slugify(s)}">
+          <div class="section-header">${s}</div>
+          ${map[s].map(item => {
+            const imgUrl = driveUrl(item.Icon);
+            const abv    = item.ABV && item.ABV !== '-' ? item.ABV : '—';
+            const imgTag = imgUrl
+              ? `<img class="card-logo" src="${imgUrl}" alt="" referrerpolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+              : '';
+            const placeholder = `<div class="card-logo-placeholder" style="${imgUrl ? 'display:none' : ''}">${guessEmoji(item.Description, item.Section)}</div>`;
+            return `
+              <div class="card">
+                ${imgTag}
+                ${placeholder}
+                <div class="card-info">
+                  <div class="card-name">${item.Title}</div>
+                  <div class="card-desc">${item.Description}</div>
+                </div>
+                <div class="card-abv">${abv}<span>ABV</span></div>
+              </div>`;
+          }).join('')}
+        </div>
+      `).join('');
+    }
+
+    load();
+  </script>
+</body>
+</html>
