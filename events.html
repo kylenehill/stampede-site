@@ -315,10 +315,147 @@
       <h2 class="section-title" style="text-align:center;font-size:clamp(2rem,6vw,4rem);">Events &amp; Entertainment</h2>
       <p style="text-align:center;color:var(--white-muted);margin-bottom:2.5rem;line-height:1.75;font-size:0.95rem;">We have an event every single day we're open &mdash; and live music every Friday and Saturday night! Mainly country bands, but we're mixing it up with some classic rock too. Follow our social media for the latest lineup.</p>
 
-      <!-- Google Calendar -->
-      <div style="background:var(--white);border:2px solid var(--red);overflow:hidden;margin-bottom:3rem;">
-        <iframe src="https://calendar.google.com/calendar/embed?src=c_dc91cad593f239b4e5b17db7dd447da0182f48753dd4b1e126ef61c20b66f63f%40group.calendar.google.com&ctz=America%2FLos_Angeles&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&mode=WEEK&bgcolor=%23ffffff" style="width:100%;height:550px;border:none;display:block;" frameborder="0" scrolling="no"></iframe>
+      <!-- Custom Stampede Calendar -->
+      <div id="stampede-cal" style="border:2px solid var(--red);background:var(--black-soft);margin-bottom:3rem;overflow:hidden;">
+
+        <!-- Calendar Header -->
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;border-bottom:2px solid var(--red);background:var(--black);">
+          <button id="cal-prev" onclick="calMove(-1)" style="background:transparent;border:2px solid var(--red);color:var(--red);font-size:1.4rem;width:2.2rem;height:2.2rem;cursor:pointer;transition:all 0.2s;line-height:1;" onmouseover="this.style.background='var(--red)';this.style.color='var(--white)'" onmouseout="this.style.background='transparent';this.style.color='var(--red)'">&#8249;</button>
+          <div style="text-align:center;">
+            <p id="cal-range" style="font-family:'Rye',serif;color:var(--red);font-size:1.1rem;text-shadow:1px 1px 0 rgba(0,0,0,0.8);"></p>
+            <p id="cal-year" style="font-family:'Oswald',sans-serif;font-size:0.7rem;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:var(--white-muted);margin-top:0.15rem;"></p>
+          </div>
+          <button id="cal-next" onclick="calMove(1)" style="background:transparent;border:2px solid var(--red);color:var(--red);font-size:1.4rem;width:2.2rem;height:2.2rem;cursor:pointer;transition:all 0.2s;line-height:1;" onmouseover="this.style.background='var(--red)';this.style.color='var(--white)'" onmouseout="this.style.background='transparent';this.style.color='var(--red)'">&#8250;</button>
+        </div>
+
+        <!-- Day columns -->
+        <div id="cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);border-bottom:1px solid var(--border-red);"></div>
+
+        <!-- Events list -->
+        <div id="cal-events" style="padding:1.25rem 1.5rem;min-height:180px;">
+          <p style="font-family:'Oswald',sans-serif;color:var(--white-muted);font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;text-align:center;padding:2rem 0;">Loading events...</p>
+        </div>
       </div>
+
+      <style>
+        .cal-day { padding:0.6rem 0.4rem; text-align:center; border-right:1px solid var(--border-red); }
+        .cal-day:last-child { border-right:none; }
+        .cal-day-name { font-family:'Oswald',sans-serif; font-size:0.65rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--white-muted); margin-bottom:0.3rem; }
+        .cal-day-num { font-family:'Oswald',sans-serif; font-size:1.1rem; font-weight:700; color:var(--white); width:2rem; height:2rem; display:flex; align-items:center; justify-content:center; margin:0 auto; border-radius:50%; }
+        .cal-day-num.today { background:var(--red); color:var(--white); }
+        .cal-day-num.has-event { border:1px solid var(--red); color:var(--red); }
+        .cal-day-num.today.has-event { background:var(--red); border-color:var(--red); color:var(--white); }
+        .cal-event-item { padding:0.75rem 0; border-bottom:1px solid var(--border-white); display:flex; gap:1rem; align-items:flex-start; }
+        .cal-event-item:last-child { border-bottom:none; }
+        .cal-event-dot { flex-shrink:0; width:8px; height:8px; border-radius:50%; background:var(--red); margin-top:0.35rem; }
+        .cal-event-date { font-family:'Oswald',sans-serif; font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--red); min-width:90px; }
+        .cal-event-title { font-family:'Oswald',sans-serif; font-size:0.95rem; font-weight:600; color:var(--white); text-transform:uppercase; letter-spacing:0.05em; }
+        .cal-event-time { font-size:0.8rem; color:var(--white-muted); margin-top:0.1rem; font-family:'Barlow',sans-serif; }
+        @media(max-width:600px){ .cal-day-name{font-size:0.55rem;} .cal-day-num{font-size:0.9rem;width:1.6rem;height:1.6rem;} }
+      </style>
+
+      <script>
+      (function(){
+        const CAL_ID = 'c_dc91cad593f239b4e5b17db7dd447da0182f48753dd4b1e126ef61c20b66f63f@group.calendar.google.com';
+        const API_KEY = 'AIzaSyDx_b_xmh23i_9Zedb2lLsvW3UxormDleY';
+        const TZ = 'America/Los_Angeles';
+        const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+        const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+        let weekOffset = 0;
+
+        function getWeekDates(offset) {
+          const now = new Date();
+          const day = now.getDay();
+          const sunday = new Date(now);
+          sunday.setDate(now.getDate() - day + offset * 7);
+          sunday.setHours(0,0,0,0);
+          return Array.from({length:7}, (_,i) => {
+            const d = new Date(sunday);
+            d.setDate(sunday.getDate() + i);
+            return d;
+          });
+        }
+
+        function fmt(date) {
+          return date.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',timeZone:TZ});
+        }
+
+        function fmtTime(isoStr, isAllDay) {
+          if(isAllDay) return 'All Day';
+          const d = new Date(isoStr);
+          return d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true,timeZone:TZ});
+        }
+
+        function renderGrid(dates, eventDates) {
+          const today = new Date();
+          const grid = document.getElementById('cal-grid');
+          grid.innerHTML = dates.map(d => {
+            const isToday = d.toDateString() === today.toDateString();
+            const dateStr = d.toISOString().slice(0,10);
+            const hasEv = eventDates.has(dateStr);
+            return `<div class="cal-day">
+              <div class="cal-day-name">${DAYS[d.getDay()]}</div>
+              <div class="cal-day-num${isToday?' today':''}${hasEv?' has-event':''}">${d.getDate()}</div>
+            </div>`;
+          }).join('');
+
+          const start = dates[0], end = dates[6];
+          document.getElementById('cal-range').textContent =
+            start.getMonth() === end.getMonth()
+              ? `${MONTHS[start.getMonth()]} ${start.getDate()} – ${end.getDate()}`
+              : `${MONTHS[start.getMonth()]} ${start.getDate()} – ${MONTHS[end.getMonth()]} ${end.getDate()}`;
+          document.getElementById('cal-year').textContent = end.getFullYear();
+        }
+
+        function renderEvents(events) {
+          const el = document.getElementById('cal-events');
+          if(!events.length){
+            el.innerHTML = '<p style="font-family:\'Oswald\',sans-serif;color:var(--white-muted);font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;text-align:center;padding:2rem 0;">No events this week — check back soon!</p>';
+            return;
+          }
+          el.innerHTML = events.map(ev => {
+            const isAllDay = !ev.start.dateTime;
+            const startStr = isAllDay ? ev.start.date : ev.start.dateTime;
+            const dateLabel = fmt(new Date(isAllDay ? startStr+'T12:00:00' : startStr));
+            const timeLabel = fmtTime(isAllDay ? startStr+'T00:00:00' : startStr, isAllDay);
+            return `<div class="cal-event-item">
+              <div class="cal-event-dot"></div>
+              <div>
+                <div class="cal-event-date">${dateLabel} &middot; ${timeLabel}</div>
+                <div class="cal-event-title">${ev.summary || 'Event'}</div>
+                ${ev.description ? `<div class="cal-event-time">${ev.description.replace(/<[^>]*>/g,'').slice(0,80)}</div>` : ''}
+              </div>
+            </div>`;
+          }).join('');
+        }
+
+        function load() {
+          const dates = getWeekDates(weekOffset);
+          const timeMin = dates[0].toISOString();
+          const timeMax = new Date(dates[6].getTime() + 86400000).toISOString();
+          const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(CAL_ID)}/events?key=${API_KEY}&timeMin=${timeMin}&timeMax=${timeMax}&singleEvents=true&orderBy=startTime&timeZone=${TZ}`;
+
+          document.getElementById('cal-events').innerHTML = '<p style="font-family:\'Oswald\',sans-serif;color:var(--white-muted);font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;text-align:center;padding:2rem 0;">Loading events...</p>';
+
+          fetch(url)
+            .then(r => r.json())
+            .then(data => {
+              const events = data.items || [];
+              const eventDates = new Set(events.map(ev => (ev.start.date || ev.start.dateTime.slice(0,10))));
+              renderGrid(dates, eventDates);
+              renderEvents(events);
+            })
+            .catch(() => {
+              renderGrid(dates, new Set());
+              document.getElementById('cal-events').innerHTML = '<p style="font-family:\'Oswald\',sans-serif;color:var(--white-muted);font-size:0.85rem;text-align:center;padding:2rem 0;">Unable to load events. Check our social media for the latest!</p>';
+            });
+        }
+
+        window.calMove = function(dir){ weekOffset += dir; load(); };
+        load();
+      })();
+      </script>
 
       <!-- Event Flyers -->
       <h3 class="western-title" style="font-size:1.5rem;margin-bottom:1.5rem;">Upcoming &amp; Featured Events</h3>
