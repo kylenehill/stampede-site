@@ -315,125 +315,15 @@
       <h2 class="section-title" style="text-align:center;font-size:clamp(2rem,6vw,4rem);">Events &amp; Entertainment</h2>
       <p style="text-align:center;color:var(--white-muted);margin-bottom:2.5rem;line-height:1.75;font-size:0.95rem;">We have an event every single day we're open &mdash; and live music every Friday and Saturday night! Mainly country bands, but we're mixing it up with some classic rock too. Follow our social media for the latest lineup.</p>
 
-      <!-- Custom Stampede Calendar -->
-      <style>
-        #stampede-cal { border:2px solid var(--red); background:var(--black-soft); margin-bottom:3rem; overflow:hidden; }
-        .cal-header { display:flex; align-items:center; justify-content:space-between; padding:1rem 1.5rem; border-bottom:2px solid var(--red); background:var(--black); }
-        .cal-nav-btn { background:transparent; border:2px solid var(--red); color:var(--red); font-size:1.4rem; width:2.2rem; height:2.2rem; cursor:pointer; transition:all 0.2s; line-height:1; }
-        .cal-nav-btn:hover { background:var(--red); color:var(--white); }
-        .cal-grid { display:grid; grid-template-columns:repeat(7,1fr); }
-        .cal-col { border-right:1px solid var(--border-red); min-height:200px; display:flex; flex-direction:column; }
-        .cal-col:last-child { border-right:none; }
-        .cal-col-head { padding:0.5rem 0.4rem; text-align:center; border-bottom:1px solid var(--border-red); background:var(--black); }
-        .cal-col-dayname { font-family:'Oswald',sans-serif; font-size:0.6rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--white-muted); }
-        .cal-col-daynum { font-family:'Oswald',sans-serif; font-size:1rem; font-weight:700; color:var(--white); width:1.8rem; height:1.8rem; display:flex; align-items:center; justify-content:center; margin:0.2rem auto 0; border-radius:50%; }
-        .cal-col-daynum.today { background:var(--red); color:var(--white); }
-        .cal-col-body { padding:0.4rem; flex:1; display:flex; flex-direction:column; gap:0.3rem; }
-        .cal-ev-chip { background:var(--red-dark); border-left:3px solid var(--red); padding:0.25rem 0.35rem; cursor:default; }
-        .cal-ev-chip:hover { background:var(--red); }
-        .cal-ev-time { font-family:'Oswald',sans-serif; font-size:0.55rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.65); line-height:1.2; }
-        .cal-ev-name { font-family:'Oswald',sans-serif; font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--white); line-height:1.3; }
-        .cal-empty { font-family:'Oswald',sans-serif; font-size:0.6rem; color:var(--border-red); text-align:center; padding:0.5rem 0; text-transform:uppercase; letter-spacing:0.1em; }
-        @media(max-width:640px){
-          .cal-col-dayname{font-size:0.5rem;}
-          .cal-col-daynum{font-size:0.8rem;width:1.4rem;height:1.4rem;}
-          .cal-ev-name{font-size:0.6rem;}
-          .cal-ev-time{font-size:0.5rem;}
-        }
-      </style>
-
-      <div id="stampede-cal">
-        <div class="cal-header">
-          <button class="cal-nav-btn" onclick="calMove(-1)">&#8249;</button>
-          <div style="text-align:center;">
-            <p id="cal-range" style="font-family:'Rye',serif;color:var(--red);font-size:1.1rem;text-shadow:1px 1px 0 rgba(0,0,0,0.8);"></p>
-            <p id="cal-year" style="font-family:'Oswald',sans-serif;font-size:0.7rem;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:var(--white-muted);margin-top:0.15rem;"></p>
-          </div>
-          <button class="cal-nav-btn" onclick="calMove(1)">&#8250;</button>
+      <!-- Google Calendar -->
+      <div style="border:2px solid var(--red);margin-bottom:3rem;overflow:hidden;">
+        <div style="background:var(--black);border-bottom:2px solid var(--red);padding:0.75rem 1.5rem;display:flex;align-items:center;gap:0.75rem;">
+          <span style="font-family:'Rye',serif;color:var(--red);font-size:1rem;text-shadow:1px 1px 0 rgba(0,0,0,0.8);">&#9733;</span>
+          <span style="font-family:'Oswald',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:var(--white-muted);">Stampede Event Calendar</span>
+          <span style="font-family:'Rye',serif;color:var(--red);font-size:1rem;text-shadow:1px 1px 0 rgba(0,0,0,0.8);">&#9733;</span>
         </div>
-        <div id="cal-grid" class="cal-grid"></div>
+        <iframe src="https://calendar.google.com/calendar/embed?src=c_dc91cad593f239b4e5b17db7dd447da0182f48753dd4b1e126ef61c20b66f63f%40group.calendar.google.com&ctz=America%2FLos_Angeles&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&mode=WEEK&bgcolor=%23111111&color=%23CC0000" style="width:100%;height:550px;border:none;display:block;" frameborder="0" scrolling="no"></iframe>
       </div>
-
-      <script>
-      (function(){
-        const CAL_ID = 'c_dc91cad593f239b4e5b17db7dd447da0182f48753dd4b1e126ef61c20b66f63f@group.calendar.google.com';
-        const API_KEY = 'AIzaSyDx_b_xmh23i_9Zedb2lLsvW3UxormDleY';
-        const TZ = 'America/Los_Angeles';
-        const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-        const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-        let weekOffset = 0;
-
-        function getWeekDates(offset){
-          const now = new Date();
-          const sunday = new Date(now);
-          sunday.setDate(now.getDate() - now.getDay() + offset * 7);
-          sunday.setHours(0,0,0,0);
-          return Array.from({length:7},(_,i)=>{ const d=new Date(sunday); d.setDate(sunday.getDate()+i); return d; });
-        }
-
-        function fmtTime(isoStr, isAllDay){
-          if(isAllDay) return 'All Day';
-          return new Date(isoStr).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true,timeZone:TZ});
-        }
-
-        function render(dates, events){
-          const today = new Date();
-          // Group events by date string
-          const byDate = {};
-          events.forEach(ev => {
-            const dateStr = ev.start.date || ev.start.dateTime.slice(0,10);
-            if(!byDate[dateStr]) byDate[dateStr] = [];
-            byDate[dateStr].push(ev);
-          });
-
-          // Header range
-          const s = dates[0], e = dates[6];
-          document.getElementById('cal-range').textContent =
-            s.getMonth()===e.getMonth()
-              ? `${MONTHS[s.getMonth()]} ${s.getDate()} – ${e.getDate()}`
-              : `${MONTHS[s.getMonth()]} ${s.getDate()} – ${MONTHS[e.getMonth()]} ${e.getDate()}`;
-          document.getElementById('cal-year').textContent = e.getFullYear();
-
-          // Build columns
-          const grid = document.getElementById('cal-grid');
-          grid.innerHTML = dates.map(d => {
-            const isToday = d.toDateString()===today.toDateString();
-            const dateStr = d.toISOString().slice(0,10);
-            const dayEvs = byDate[dateStr] || [];
-            const chips = dayEvs.length
-              ? dayEvs.map(ev => {
-                  const isAllDay = !ev.start.dateTime;
-                  const time = fmtTime(isAllDay ? '' : ev.start.dateTime, isAllDay);
-                  return `<div class="cal-ev-chip">
-                    <div class="cal-ev-time">${time}</div>
-                    <div class="cal-ev-name">${(ev.summary||'Event').slice(0,30)}</div>
-                  </div>`;
-                }).join('')
-              : `<div class="cal-empty">&mdash;</div>`;
-
-            return `<div class="cal-col">
-              <div class="cal-col-head">
-                <div class="cal-col-dayname">${DAYS[d.getDay()]}</div>
-                <div class="cal-col-daynum${isToday?' today':''}">${d.getDate()}</div>
-              </div>
-              <div class="cal-col-body">${chips}</div>
-            </div>`;
-          }).join('');
-        }
-
-        function load(){
-          const dates = getWeekDates(weekOffset);
-          const timeMin = dates[0].toISOString();
-          const timeMax = new Date(dates[6].getTime()+86400000).toISOString();
-          const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(CAL_ID)}/events?key=${API_KEY}&timeMin=${encodeURIComponent(timeMin)}&timeMax=${encodeURIComponent(timeMax)}&singleEvents=true&orderBy=startTime&timeZone=${TZ}`;
-          document.getElementById('cal-grid').innerHTML = '<div style="grid-column:1/-1;padding:2rem;text-align:center;font-family:'Oswald',sans-serif;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--white-muted);">Loading...</div>';
-          fetch(url).then(r=>r.json()).then(data=>render(dates, data.items||[])).catch(()=>render(dates,[]));
-        }
-
-        window.calMove = function(dir){ weekOffset+=dir; load(); };
-        load();
-      })();
-      </script>
 
             <!-- Event Flyers -->
       <h3 class="western-title" style="font-size:1.5rem;margin-bottom:1.5rem;">Upcoming &amp; Featured Events</h3>
