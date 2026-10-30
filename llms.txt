@@ -38,7 +38,7 @@
 ## Pages
 
 - [Home](https://stampedelivermore.com/): overview, hours, location and contact
-- [Menu](https://stampedelivermore.com/menu.html): full food menu with prices, house cocktails, buckshots, and lunch and late-night menus
+- [Menu](https://stampedelivermore.com/menu.html): full food menu with prices, house cocktails, buckshots and the lunch menu
 - [Drink Menu & Tap List](https://stampedelivermore.com/tap-list.html): what's on tap and pouring now, updated live
 - [Live Music & Events](https://stampedelivermore.com/events.html): event calendar, featured events and the Boar's Nest
 - [FAQs](https://stampedelivermore.com/faq.html): age rules, pets, entertainment, dietary options, reservations and private parties
