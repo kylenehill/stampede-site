@@ -1,3 +1,4 @@
+# Stampede Bar & Grill, stampedelivermore.com
 User-agent: *
 Allow: /
 
