@@ -343,7 +343,7 @@ function onRecaptchaLoad(){
 <div class="page active">
 
   <section class="hero">
-    <div class="hero-logo"><img src="images/logo.webp" alt="Stampede Livermore"></div>
+    <div class="hero-logo"><img src="images/logo.webp" alt="Stampede Bar &amp; Grill Livermore logo"></div>
     <h1>Welcome to Livermore's<br>Newest Bar &amp; Grill</h1>
     <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
       <a class="btn btn-outline" href="menu.html">Our Menu</a>
@@ -515,6 +515,16 @@ function onRecaptchaLoad(){
   <footer><p>&copy; 2026 Stampede &middot; All Rights Reserved</p><p style="margin-top:0.4rem;font-size:0.8rem;opacity:0.6;">1790 First Street, Livermore, CA 94550 &middot; <a href="tel:+19252008783">(925) 200-8783</a></p></footer>
 
 <script>
+const SLIDE_ALTS={
+  '1iimage.webp':'Stampede Bar & Grill weekly drink specials flyer',
+  '1image.webp':'Stampede Bar & Grill weekly events flyer: line dancing, live music and karaoke',
+  '2image.webp':'Stampede Bar & Grill limited-time dinner entrée specials for each night of the week',
+  '3image.webp':'Wynn Williams live at Stampede Bar & Grill in Livermore on November 21',
+  '4image.webp':'New Year\'s Eve dinner, dancing and live music at Stampede Bar & Grill',
+  '5image.webp':'New Year\'s Eve dinner and celebration menu at Stampede Bar & Grill',
+  'image6.webp':'Stampede merch for sale: shirts, sweatshirts, hats, shot glasses and beer mugs'
+};
+function slideAlt(file){return SLIDE_ALTS[file]||'Stampede Bar & Grill Livermore flyer';}
 function toggleMobile(){document.getElementById("mobileMenu").classList.toggle("open");document.getElementById("hamburger").classList.toggle("open");}
 function closeMobile(){document.getElementById("mobileMenu").classList.remove("open");document.getElementById("hamburger").classList.remove("open");}
 function openLightbox(src){document.getElementById("lightboxImg").src=src;document.getElementById("lightbox").classList.add("open");document.body.style.overflow="hidden";}
@@ -538,7 +548,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeLightbox();});
         const slide=document.createElement('div');
         slide.className='slide';
         slide.style.cssText='min-width:100%;position:relative;';
-        slide.innerHTML=`<img src="images/slider/${file}" alt="Stampede Slide ${i+1}"${i>0?' loading="lazy"':''} style="width:100%;height:700px;object-fit:contain;display:block;background:#111111;">`;
+        slide.innerHTML=`<img src="images/slider/${file}" alt="${slideAlt(file)}"${i>0?' loading="lazy"':''} style="width:100%;height:700px;object-fit:contain;display:block;background:#111111;">`;
         track.appendChild(slide);
         const d=document.createElement('div');
         d.style.cssText='width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.35);cursor:pointer;transition:background 0.2s;';
@@ -614,7 +624,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeLightbox();});
         const slide=document.createElement('div');
         slide.className='slide';
         slide.style.cssText='min-width:100%;position:relative;';
-        slide.innerHTML=`<img src="images/slider/${file}" alt="Stampede Slide ${i+1}"${i>0?' loading="lazy"':''} style="width:100%;height:700px;object-fit:contain;display:block;background:#111111;">`;
+        slide.innerHTML=`<img src="images/slider/${file}" alt="${slideAlt(file)}"${i>0?' loading="lazy"':''} style="width:100%;height:700px;object-fit:contain;display:block;background:#111111;">`;
         track.appendChild(slide);
         const d=document.createElement('div');
         d.style.cssText='width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.35);cursor:pointer;transition:background 0.2s;';
