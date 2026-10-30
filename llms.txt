@@ -18,6 +18,8 @@
 ## Food and drink
 
 - Lunch (11:30 am – 3 pm), dinner, late-night bites and dessert
+- Food menu: appetizers, soups & salads, sandwiches, burgers, steaks and entrées, sides, dessert and a kids menu
+- Signature items include the Tri-Tip Sandwich, The Stampede Burger, Outlaw BBQ Burger, Loaded Spud Nachos, Chicken Wangs (Spicy Honey, Buffalo, BBQ, Mango Habanero or Parmesan Garlic), New York Steak, Prime Rib and Half Rack BBQ Ribs
 - House cocktails, buckshots, blended drinks, alcohol-free drinks, wine and a rotating draft beer list
 - Options for all dietary needs; ask your server for recommendations
 - Delivery through DoorDash
@@ -36,7 +38,7 @@
 ## Pages
 
 - [Home](https://stampedelivermore.com/): overview, hours, location and contact
-- [Menu](https://stampedelivermore.com/menu.html): house cocktails, buckshots and full food, lunch, late-night and dessert menus
+- [Menu](https://stampedelivermore.com/menu.html): full food menu with prices, house cocktails, buckshots, and lunch and late-night menus
 - [Drink Menu & Tap List](https://stampedelivermore.com/tap-list.html): what's on tap and pouring now, updated live
 - [Live Music & Events](https://stampedelivermore.com/events.html): event calendar, featured events and the Boar's Nest
 - [FAQs](https://stampedelivermore.com/faq.html): age rules, pets, entertainment, dietary options, reservations and private parties
