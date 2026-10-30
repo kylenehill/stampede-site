@@ -16,17 +16,17 @@ jobs:
 
       - name: Generate manifests
         run: |
+          # Build each manifest as a JSON list of the folder's .webp files.
+          # Python handles file names with spaces or special characters.
           for folder in images/events images/slider; do
-            files=$(ls "$folder"/*.webp 2>/dev/null | xargs -I{} basename {} | sort)
-            echo "[" > "$folder/manifest.json"
-            first=true
-            for f in $files; do
-              [ "$first" = true ] || echo "," >> "$folder/manifest.json"
-              printf '  "%s"' "$f" >> "$folder/manifest.json"
-              first=false
-            done
-            echo "" >> "$folder/manifest.json"
-            echo "]" >> "$folder/manifest.json"
+            python3 - "$folder" <<'PY'
+          import json, os, sys
+          folder = sys.argv[1]
+          files = sorted(f for f in os.listdir(folder) if f.lower().endswith('.webp'))
+          with open(os.path.join(folder, 'manifest.json'), 'w') as fh:
+              json.dump(files, fh, indent=2)
+              fh.write('\n')
+          PY
             echo "Updated $folder/manifest.json"
           done
 

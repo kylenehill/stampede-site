@@ -344,9 +344,10 @@
           .then(files => {
             const grid = document.getElementById('flyer-grid');
             files.forEach(file => {
-              const src = `images/events/${file}`;
+              const src = `images/events/${encodeURIComponent(file)}`;
               const label = file.replace(/\.webp$/, '').replace(/-/g, ' ')
-                .replace(/\b\w/g, c => c.toUpperCase());
+                .replace(/\b\w/g, c => c.toUpperCase())
+                .replace(/\bNye\b/g, 'NYE');
               const card = document.createElement('div');
               card.className = 'flyer-card';
               card.onclick = () => openLightbox(src);
