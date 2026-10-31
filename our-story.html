@@ -207,12 +207,6 @@
   .faq-a a { color: var(--red); }
 
   /* ── TRI-BOX ── */
-  .tri-box { display: grid; grid-template-columns: repeat(3,1fr); border-top: 3px solid var(--red); background: var(--black); }
-  .tri-box-item { padding: 2.5rem 2rem; border-right: 1px solid var(--border-white); display: flex; flex-direction: column; gap: 0.85rem; }
-  .tri-box-item:last-child { border-right: none; }
-  .tri-box-item .tb-label { font-family: 'Oswald', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--white-muted); }
-  .tri-box-item h3 { font-family: 'Rye', serif; font-size: 1.3rem; color: var(--red); text-shadow: 1px 1px 0 rgba(0,0,0,0.7); line-height: 1.25; }
-  .tri-box-item p { color: var(--white-muted); font-size: 0.88rem; line-height: 1.65; flex: 1; }
 
   /* ── STORY BOX ── */
   .story-box { border: 1px solid var(--border-red); padding: 3.5rem 4rem; background: var(--black-soft); text-align: center; max-width: 900px; margin: 0 auto; }
@@ -260,8 +254,6 @@
   @media (max-width:900px) {
     .nav-links { display: none; }
     .hamburger { display: flex; }
-    .tri-box { grid-template-columns: 1fr; }
-    .tri-box-item { border-right: none; border-bottom: 1px solid var(--border-white); }
     .two-up { grid-template-columns: 1fr; }
     .two-up-item { flex-direction: column; min-height: auto; }
     .two-up-red { width: 100%; padding: 2.5rem 2rem; margin-left: 0 !important; }
@@ -280,7 +272,6 @@
     .hero { padding: 2.5rem 1.25rem; }
     .hero-logo img { height: 150px; }
     .hero h1 { font-size: 1.6rem; }
-    .tri-box-item { padding: 2rem 1.25rem; }
     .cf-row { flex-direction: column; }
     /* .vip-card { padding: 1.75rem 1.25rem; } */
     .flyer-grid { grid-template-columns: 1fr 1fr; }
@@ -336,11 +327,6 @@
       </div>
     </div>
   </section>
-  <div class="tri-box">
-    <div class="tri-box-item"><span class="tb-label">Eat &amp; Drink</span><h3>Our Menu</h3><p>Cold drinks, great food, all the good stuff.</p><a class="btn btn-outline-red" style="align-self:flex-start;" href="menu.html">View Menu</a></div>
-    <div class="tri-box-item"><span class="tb-label">Calendar</span><h3>Events &amp; Live Music</h3><p>Something happening every night we're open.</p><a class="btn btn-outline-red" style="align-self:flex-start;" href="events.html">See Events</a></div>
-    <div class="tri-box-item"><span class="tb-label">Membership</span><h3>VIP &amp; Boots n' Brews</h3><p>Skip the line and make every visit better.</p><a class="btn btn-outline-red" style="align-self:flex-start;" href="/">Join VIP</a></div>
-  </div>
   <footer><div class="social-links"><a href="https://www.instagram.com/stampedelivermore/" target="_blank" rel="noopener" aria-label="Stampede Bar &amp; Grill on Instagram" title="Stampede Bar &amp; Grill on Instagram"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/></svg></a><a href="https://www.facebook.com/profile.php?id=61571894585344" target="_blank" rel="noopener" aria-label="Stampede Bar &amp; Grill on Facebook" title="Stampede Bar &amp; Grill on Facebook"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M14 8h3V4h-3c-2.8 0-5 2.2-5 5v2H6v4h3v7h4v-7h3l1-4h-4V9c0-.6.4-1 1-1z"/></svg></a><a href="https://www.tiktok.com/@stampedelivermore" target="_blank" rel="noopener" aria-label="Stampede Bar &amp; Grill on TikTok" title="Stampede Bar &amp; Grill on TikTok"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M16 3c.3 2.4 1.9 4 4 4.2v3.2c-1.5 0-2.9-.4-4-1.2v6.3A5.5 5.5 0 1 1 10.5 10v3.3a2.3 2.3 0 1 0 2.3 2.3V3H16z"/></svg></a><a href="https://maps.app.goo.gl/BEHHQREd1TLmooES6" target="_blank" rel="noopener" aria-label="Stampede Bar &amp; Grill on Google Maps" title="Stampede Bar &amp; Grill on Google Maps"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></a></div><p>&copy; 2026 Stampede &middot; All Rights Reserved</p><p style="margin-top:0.4rem;font-size:0.8rem;opacity:0.6;">1790 First Street, Livermore, CA 94550 &middot; <a href="tel:+19252008783">(925) 200-8783</a></p></footer>
 
 <script>
