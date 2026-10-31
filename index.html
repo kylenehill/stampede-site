@@ -296,6 +296,12 @@ function onRecaptchaLoad(){
   /* ── FOOTER ── */
   footer { background: var(--black); color: var(--white-muted); text-align: center; padding: 1.75rem 2rem; font-size: 0.85rem; border-top: 2px solid var(--red); font-family: 'Oswald', sans-serif; letter-spacing: 0.05em; }
   footer a { color: var(--red); text-decoration: none; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+  .review-card { border: 1px solid var(--border-red); background: var(--black-soft); padding: 1.75rem 1.5rem; display: flex; flex-direction: column; gap: 0.9rem; }
+  .review-stars { color: var(--red-bright); font-size: 1.1rem; letter-spacing: 0.15em; }
+  .review-card blockquote { color: var(--white-dim); font-size: 0.98rem; line-height: 1.7; font-style: italic; flex: 1; }
+  .review-card figcaption { font-family: 'Oswald', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); }
+  .review-card figcaption span { color: var(--white-muted); font-weight: 400; }
   .social-links { display: flex; justify-content: center; gap: 0.75rem; margin-bottom: 0.9rem; }
   .social-links a { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border-red); color: var(--white); transition: background 0.2s, color 0.2s, border-color 0.2s; }
   .social-links a:hover { background: var(--red); border-color: var(--red); color: var(--white); }
@@ -414,6 +420,22 @@ function onRecaptchaLoad(){
         <div id="sliderDots" style="position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);display:flex;gap:0.5rem;z-index:10;"></div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ── GUEST REVIEWS ── -->
+  <section style="background:var(--black);padding:4rem 2rem 1rem;">
+    <div class="container">
+      <p style="font-family:'Oswald',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.35em;text-transform:uppercase;color:var(--white-muted);margin-bottom:0.5rem;text-align:center;">Reviews</p>
+      <h2 style="font-family:'Rye',serif;font-size:clamp(1.6rem,3.5vw,2.6rem);color:var(--red);text-shadow:2px 2px 0 rgba(0,0,0,.9);text-align:center;line-height:1.2;margin-bottom:2rem;">What Our Guests Are Saying</h2>
+      <div class="reviews-grid">
+        <figure class="review-card"><div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote>&ldquo;I got the juiciest burger that I&rsquo;ve ever had at this place, literally so juicy it was dripping onto my plate. And their fries are so good.&rdquo;</blockquote><figcaption>Angela B. <span>&middot; Google review</span></figcaption></figure>
+        <figure class="review-card"><div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote>&ldquo;Our waitress was very attentive and made sure to grab us a new bottle of wine as soon as we were ready. The atmosphere is fun and approachable. Watching the mechanical bull is entertaining and we enjoyed attempting to line dance. I would definitely go back.&rdquo;</blockquote><figcaption>Regina M. <span>&middot; Google review</span></figcaption></figure>
+        <figure class="review-card"><div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote>&ldquo;What an incredible spot! We are so lucky to have this venue in Livermore. &hellip; The venue has such a cool country vibe, the staff was attentive and made everything run smoothly; both kids and parents had an amazing time. All our guests raved about how much fun it was&mdash;definitely the best party venue we&rsquo;ve tried. We&rsquo;ll be back!&rdquo;</blockquote><figcaption>Jeremy R. <span>&middot; Google review</span></figcaption></figure>
+      </div>
+      <div style="text-align:center;margin-top:2rem;">
+        <a class="btn btn-outline" href="https://maps.app.goo.gl/BEHHQREd1TLmooES6" target="_blank" rel="noopener">Read More Reviews on Google</a>
+      </div>
     </div>
   </section>
 

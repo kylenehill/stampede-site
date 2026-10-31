@@ -348,6 +348,12 @@
   /* ── FOOTER ── */
   footer { background: var(--black); color: var(--white-muted); text-align: center; padding: 1.75rem 2rem; font-size: 0.85rem; border-top: 2px solid var(--red); font-family: 'Oswald', sans-serif; letter-spacing: 0.05em; }
   footer a { color: var(--red); text-decoration: none; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+  .review-card { border: 1px solid var(--border-red); background: var(--black-soft); padding: 1.75rem 1.5rem; display: flex; flex-direction: column; gap: 0.9rem; }
+  .review-stars { color: var(--red-bright); font-size: 1.1rem; letter-spacing: 0.15em; }
+  .review-card blockquote { color: var(--white-dim); font-size: 0.98rem; line-height: 1.7; font-style: italic; flex: 1; }
+  .review-card figcaption { font-family: 'Oswald', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); }
+  .review-card figcaption span { color: var(--white-muted); font-weight: 400; }
   .social-links { display: flex; justify-content: center; gap: 0.75rem; margin-bottom: 0.9rem; }
   .social-links a { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border-red); color: var(--white); transition: background 0.2s, color 0.2s, border-color 0.2s; }
   .social-links a:hover { background: var(--red); border-color: var(--red); color: var(--white); }
@@ -480,6 +486,11 @@
             <img src="images/boars-nest-flyer.webp" loading="lazy" style="width:100%;border:2px solid var(--border-red);" alt="Boar's Nest Rental Flyer">
           </div>
         </div>
+      </div>
+
+      <!-- Private events review -->
+      <div style="max-width:760px;margin:2rem auto 0;">
+        <figure class="review-card"><div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote>&ldquo;We recently hosted our company event at Stampede Bar &amp; Grill, and it was an incredible experience from start to finish! &hellip; The food was delicious, the service was outstanding, and the venue was the perfect setting for our company celebration. &hellip; If you&rsquo;re looking for a venue for a corporate event, private party, or team celebration, I can&rsquo;t recommend Stampede Bar &amp; Grill enough.&rdquo;</blockquote><figcaption>Katelyn J. <span>&middot; Google review</span></figcaption></figure>
       </div>
     </div>
   </section>
